@@ -48,8 +48,10 @@ h1,h2,h3{font-family:"Sora",sans-serif}
 .mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase}
 .wrap{max-width:1220px;margin:0 auto;padding:0 24px}
 :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
-.skip{position:absolute;left:0;top:74px;width:1px;height:1px;overflow:hidden;white-space:nowrap}
-.skip:focus{position:fixed;left:12px;top:12px;width:auto;height:auto;padding:10px 16px;background:var(--cyan);color:#04222B;z-index:400;font-weight:800;border-radius:8px;box-shadow:var(--shadow)}
+
+/* ---------- skip link ---------- */
+.skip{position:fixed;top:-120px;left:16px;z-index:200;background:var(--cyan);color:#04222B;font-weight:700;font-size:.9rem;line-height:1.3;padding:11px 18px;border-radius:10px;text-decoration:none;box-shadow:var(--shadow);transition:top 200ms var(--ease)}
+.skip:focus{top:76px}
 
 /* ---------- nav ---------- */
 header.nav{position:fixed;top:0;left:0;right:0;z-index:120;background:rgba(5,9,20,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -98,10 +100,12 @@ header.nav{position:fixed;top:0;left:0;right:0;z-index:120;background:rgba(5,9,2
 #particleCanvas{position:absolute;inset:0;width:100%;height:100%;display:none}
 .photo-controls{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap}
 .photo-note{font-size:.82rem;color:var(--faint)}
-.note-anchor{position:relative;margin:0 0 -52px 18px;width:min(312px,80%);z-index:5;transform:rotate(-3.5deg);perspective:1100px}
+.note-anchor{position:relative;margin:0 0 -52px 18px;width:min(312px,80%);z-index:5;perspective:1100px}
 .note-hint{font-family:"Caveat",cursive;font-size:1.3rem;color:var(--cyan);transform:rotate(-4deg);margin:0 0 2px 10px;text-shadow:0 2px 8px rgba(0,0,0,.6)}
-.note-flip{position:relative;width:100%;transform-style:preserve-3d;transform-origin:50% 0%;transition:transform 620ms var(--ease);cursor:pointer;background:none;border:none;padding:0;text-align:left;display:grid}
-.note-flip.flipped{transform:rotateX(178deg)}
+.note-flip{position:relative;width:100%;transform-style:preserve-3d;transform-origin:50% 50%;transform:rotate(-3.5deg);transition:transform 620ms var(--ease);cursor:pointer;background:none;border:none;padding:0;margin:0;text-align:left;display:grid;will-change:transform}
+.note-flip.flipped{transform:rotate(-3.5deg) rotateX(180deg)}
+.note-flip:active{transform:rotate(-3.5deg)}
+.note-flip.flipped:active{transform:rotate(-3.5deg) rotateX(180deg)}
 .note-face{display:block;position:relative;grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:linear-gradient(168deg,var(--paper) 0%,var(--paper-2) 88%);color:#33301F;padding:30px 18px 16px;border-radius:2px 3px 14px 4px/2px 3px 4px 14px;box-shadow:0 18px 34px rgba(0,0,0,.5),0 3px 8px rgba(0,0,0,.35);font-family:"Caveat",cursive;font-size:1.06rem;line-height:1.42;font-weight:600}
 .note-face::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 26px,rgba(90,80,40,.08) 26px 27px);pointer-events:none;border-radius:inherit}
 .note-face.back{transform:rotateX(180deg)}
@@ -117,8 +121,7 @@ header.nav{position:fixed;top:0;left:0;right:0;z-index:120;background:rgba(5,9,2
 section{padding:88px 0;position:relative}
 section.alt{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .sec-head{margin-bottom:42px;max-width:820px}
-.sec-num{font-family:"JetBrains Mono",monospace;color:var(--cyan);font-size:.74rem;letter-spacing:.18em}
-.sec-head h2{font-size:clamp(1.9rem,4.2vw,2.9rem);letter-spacing:-.02em;line-height:1.08;margin:10px 0 0;font-weight:800}
+.sec-head h2{font-size:clamp(1.9rem,4.2vw,2.9rem);letter-spacing:-.02em;line-height:1.08;margin:0;font-weight:800}
 .sec-head p{color:var(--muted);margin:14px 0 0;max-width:62ch;font-size:1.03rem}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity 280ms var(--ease),transform 280ms var(--ease)}
 .reveal.in{opacity:1;transform:none}
@@ -235,10 +238,9 @@ table.compare td:first-child{color:var(--text);font-weight:700;white-space:nowra
 .legend i{width:11px;height:11px;border-radius:50%;flex:none}
 
 /* next generation */
-.walk{display:grid;gap:0;counter-reset:step}
+.walk{display:grid;gap:0}
 .walk-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
 .walk-item:last-child{border-bottom:none}
-.walk-n{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--cyan);color:var(--cyan);display:grid;place-items:center;font-family:"JetBrains Mono",monospace;font-size:.8rem;font-weight:600}
 .walk-item h3{margin:2px 0 3px;font-size:1.02rem}
 .walk-item p{margin:0;color:var(--muted);font-size:.95rem}
 .demo-box{border:1px dashed var(--violet);border-radius:var(--radius);padding:26px;background:rgba(154,123,255,.05)}
@@ -450,7 +452,6 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
 <section id="about" aria-labelledby="about-h">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-num">01 — ABOUT</span>
       <h2 id="about-h">The person behind the technology</h2>
       <p>An AI and technology enthusiast with a scientist&rsquo;s training and an educator&rsquo;s daily practice.</p>
     </div>
@@ -487,9 +488,7 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
 <section class="alt" id="ai-tech" aria-labelledby="aitech-h">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-num">02 — AI &amp; TECHNOLOGY</span>
-      <h2 id="aitech-h">Nine areas, explained properly</h2>
-      <p>Not a wall of logos. Each area below explains what it is, how it works, the problems it addresses, and its limitations — with my own experience level labelled honestly on every one.</p>
+      <h2 id="aitech-h">AI &amp; Technology</h2>
     </div>
 
     <details class="deep reveal" open>
@@ -504,10 +503,10 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
     </details>
 
     <details class="deep reveal">
-      <summary><span><h3>AI-Assisted Data Analysis</h3><p>A disciplined ten-step process, with AI helping — never replacing the checking.</p></span><span class="chev" aria-hidden="true">+</span></summary>
+      <summary><span><h3>AI-Assisted Data Analysis</h3><p>A disciplined process, with AI helping — never replacing the checking.</p></span><span class="chev" aria-hidden="true">+</span></summary>
       <div class="deep-body">
         <div class="wide"><h4>The process</h4>
-        <div class="flow"><span>1 Collection</span><i>→</i><span>2 Cleaning</span><i>→</i><span>3 Missing values</span><i>→</i><span>4 Transformation</span><i>→</i><span>5 Exploration</span><i>→</i><span>6 Statistics</span><i>→</i><span>7 Visualisation</span><i>→</i><span>8 Interpretation</span><i>→</i><span>9 Reporting</span><i>→</i><span>10 Quality checking</span></div>
+        <div class="flow"><span>Collection</span><i>→</i><span>Cleaning</span><i>→</i><span>Missing values</span><i>→</i><span>Transformation</span><i>→</i><span>Exploration</span><i>→</i><span>Statistics</span><i>→</i><span>Visualisation</span><i>→</i><span>Interpretation</span><i>→</i><span>Reporting</span><i>→</i><span>Quality checking</span></div>
         <p>Data analysis starts long before any chart: collecting the right data, cleaning errors and duplicates, deciding honestly how to handle missing values, and reshaping data into analysable form. Exploration and statistics come next; visualisation makes patterns visible; interpretation asks what the patterns actually mean — and quality checking asks whether any of it can be trusted.</p></div>
         <div><h4>Tools</h4><p><b>Python</b> with <b>Pandas</b> (tables and cleaning), <b>NumPy</b> (numerical computation) and <b>Matplotlib</b> (charts), plus classical statistical methods. AI assistants help write and debug code, suggest checks and draft explanations of results.</p></div>
         <div><h4>Limitations</h4><p>AI can produce plausible-looking analysis of bad data. A model cannot know that a column was recorded wrongly or that a sample is unrepresentative — the analyst must. Findings from a biased or tiny dataset stay unreliable no matter how polished the chart.</p></div>
@@ -602,7 +601,6 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
 <section id="projects" aria-labelledby="proj-h">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-num">03 — PROJECTS</span>
       <h2 id="proj-h">Real work, honestly labelled</h2>
       <p>Only genuine work appears here, each with its true status. No invented clients, metrics or testimonials — ideas are labelled Concept, and that is a respectable label.</p>
     </div>
@@ -633,19 +631,6 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
           <div><dt>Lesson</dt><dd>A small school&rsquo;s website succeeds by being accurate and current, not elaborate.</dd></div>
         </dl>
         <a class="proj-link" href="https://fahadkz155.github.io/gps-koz-kalay/" target="_blank" rel="noopener">Visit the live school site →</a>
-      </article>
-      <article class="card proj-card reveal">
-        <span class="cat">Professional Development · GVS</span>
-        <h3>Teacher-Training Coursework — Global Virtual School KP</h3>
-        <span class="tag" style="align-self:flex-start">In Progress</span>
-        <dl>
-          <div><dt>Problem</dt><dd>Keeping English and digital skills growing alongside a full teaching load.</dd></div>
-          <div><dt>Objective</dt><dd>Complete structured coursework on the GVS LMS (lms.gvskp.org), including the English B2 track.</dd></div>
-          <div><dt>Approach</dt><dd>Regular coursework and assignments prepared with care — vocabulary, writing and language study documented as handwritten-style study notes.</dd></div>
-          <div><dt>Technologies</dt><dd>GVS LMS, gamified practice platform, AI tools for study support.</dd></div>
-          <div><dt>Limitations</dt><dd>Progress depends on school schedule and connectivity in Buner.</dd></div>
-          <div><dt>Lesson</dt><dd>A teacher who stays a student models exactly what he asks of his class.</dd></div>
-        </dl>
       </article>
       <article class="card proj-card reveal">
         <span class="cat">Education · Teaching Materials</span>
@@ -692,7 +677,6 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
 <section class="alt" id="lab" aria-labelledby="lab-h">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-num">04 — INTERACTIVE AI LABORATORY</span>
       <h2 id="lab-h">Touch how intelligence works</h2>
       <p>Every exhibit here genuinely runs in your browser. Scenes load only when you reach them, pause off-screen, and each one is labelled for what it is — a simplified educational model, never a claim about a real commercial system.</p>
     </div>
@@ -851,7 +835,6 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
 <section id="nextgen" aria-labelledby="ng-h">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-num">05 — AI FOR THE NEXT GENERATION · THE MISSION</span>
       <h2 id="ng-h">AI for the Next Generation</h2>
       <p style="font-family:'Sora',sans-serif;font-size:1.25rem;color:var(--text);font-weight:600">Preparing Young Minds for an Intelligent Future.</p>
       <p>My long-term ambition: explore how artificial intelligence can make primary education more understandable, interactive, personalised and accessible — never to replace teachers or human relationships, always to support better learning.</p>
@@ -867,13 +850,13 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
         <h3>Personalised Learning, Step by Step</h3>
         <p>How a good educational assistant responds when a child is stuck on multiplication — support for understanding, not a shortcut past it:</p>
         <div class="walk">
-          <div class="walk-item"><span class="walk-n">1</span><div><h3>Recognise the difficulty</h3><p>The child answers 6 × 7 incorrectly twice. The assistant notices the pattern instead of just marking it wrong.</p></div></div>
-          <div class="walk-item"><span class="walk-n">2</span><div><h3>Explain simply</h3><p>&ldquo;6 × 7 means six groups of seven — like six bags with seven marbles in each.&rdquo;</p></div></div>
-          <div class="walk-item"><span class="walk-n">3</span><div><h3>Show a visual example</h3><p>Six rows of seven dots appear; the child counts along the rows.</p></div></div>
-          <div class="walk-item"><span class="walk-n">4</span><div><h3>Give a guided exercise</h3><p>&ldquo;Now you try: what is 6 × 5? Use the rows if you need them.&rdquo;</p></div></div>
-          <div class="walk-item"><span class="walk-n">5</span><div><h3>Offer a hint, not the answer</h3><p>If the child stalls: &ldquo;You know 6 × 5 is five sixes… count by sixes: 6, 12, 18…&rdquo;</p></div></div>
-          <div class="walk-item"><span class="walk-n">6</span><div><h3>Check understanding</h3><p>&ldquo;Well done. Can you tell me in your own words what 6 × 7 means?&rdquo;</p></div></div>
-          <div class="walk-item"><span class="walk-n">7</span><div><h3>Another example if needed</h3><p>Understanding confirmed — or another example, patiently, until it is.</p></div></div>
+          <div class="walk-item"><div><h3>Recognise the difficulty</h3><p>The child answers 6 × 7 incorrectly twice. The assistant notices the pattern instead of just marking it wrong.</p></div></div>
+          <div class="walk-item"><div><h3>Explain simply</h3><p>&ldquo;6 × 7 means six groups of seven — like six bags with seven marbles in each.&rdquo;</p></div></div>
+          <div class="walk-item"><div><h3>Show a visual example</h3><p>Six rows of seven dots appear; the child counts along the rows.</p></div></div>
+          <div class="walk-item"><div><h3>Give a guided exercise</h3><p>&ldquo;Now you try: what is 6 × 5? Use the rows if you need them.&rdquo;</p></div></div>
+          <div class="walk-item"><div><h3>Offer a hint, not the answer</h3><p>If the child stalls: &ldquo;You know 6 × 5 is five sixes… count by sixes: 6, 12, 18…&rdquo;</p></div></div>
+          <div class="walk-item"><div><h3>Check understanding</h3><p>&ldquo;Well done. Can you tell me in your own words what 6 × 7 means?&rdquo;</p></div></div>
+          <div class="walk-item"><div><h3>Another example if needed</h3><p>Understanding confirmed — or another example, patiently, until it is.</p></div></div>
         </div>
       </div>
       <div>
@@ -908,7 +891,6 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
 <section class="alt" id="risks" aria-labelledby="risk-h">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-num">06 — AI RISKS &amp; RESPONSIBILITY</span>
       <h2 id="risk-h">The other half of the story</h2>
       <p>Artificial intelligence is not an entirely positive technology, and a site that celebrates it must say so plainly. Each risk below: what it is, how it happens, a realistic example, why it matters, and a practical mitigation. Open any topic.</p>
     </div>
@@ -920,7 +902,6 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
 <section id="research" aria-labelledby="res-h">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-num">07 — RESEARCH &amp; PUBLICATIONS</span>
       <h2 id="res-h">Research, presented honestly</h2>
       <p>One real study, presented in full with its numbers exactly as recorded and its status stated without decoration — plus the research directions I am growing toward.</p>
     </div>
@@ -955,7 +936,7 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
 
     <div class="grid-2" style="margin-top:14px">
       <figure class="fig reveal">
-        <span class="fig-num">Figure 1</span><h3>Patients by sex (n = 153)</h3>
+        <h3>Patients by sex (n = 153)</h3>
         <div role="img" aria-label="Bar chart: 111 male patients, 42 female patients.">
           <div class="barrow"><span>Male</span><span class="track"><i class="fill" style="width:100%;background:#4D8DFF"></i></span><em>111</em></div>
           <div class="barrow"><span>Female</span><span class="track"><i class="fill" style="width:37.8%;background:#38E1FF"></i></span><em>42</em></div>
@@ -963,7 +944,7 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
         <figcaption>Men outnumbered women by about 2.6 to 1 among admitted patients (72.5% / 27.5%).</figcaption>
       </figure>
       <figure class="fig reveal">
-        <span class="fig-num">Figure 2</span><h3>Patients by age group (years)</h3>
+        <h3>Patients by age group (years)</h3>
         <div role="img" aria-label="Bar chart: age 0 to 15, 19 patients; 15 to 30, 63; 30 to 45, 24; 45 to 70, 44.">
           <div class="barrow"><span>0–15</span><span class="track"><i class="fill" style="width:30.2%;background:#2EC4B6"></i></span><em>19</em></div>
           <div class="barrow"><span>15–30</span><span class="track"><i class="fill" style="width:100%;background:#2EC4B6"></i></span><em>63</em></div>
@@ -973,7 +954,7 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
         <figcaption>Stated honestly: these groups sum to 150, not 153 — age was not recorded for three patients in the original study.</figcaption>
       </figure>
       <figure class="fig reveal">
-        <span class="fig-num">Figure 3</span><h3>Patients by occupation (n = 153)</h3>
+        <h3>Patients by occupation (n = 153)</h3>
         <div role="img" aria-label="Bar chart: unemployed 52, labourer 38, student 21, child under 10, 19, government employee 16, own business 7.">
           <div class="barrow"><span>Unemployed</span><span class="track"><i class="fill" style="width:100%;background:#E8934A"></i></span><em>52</em></div>
           <div class="barrow"><span>Labourer</span><span class="track"><i class="fill" style="width:73.1%;background:#E8934A"></i></span><em>38</em></div>
@@ -985,7 +966,7 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
         <figcaption>Unemployed people and labourers together accounted for 59% of cases. Marital status: married 107 (69.9%), unmarried 46 (30.1%).</figcaption>
       </figure>
       <figure class="fig reveal">
-        <span class="fig-num">Figure 4</span><h3>Presenting symptoms (% of patients)</h3>
+        <h3>Presenting symptoms (% of patients)</h3>
         <div role="img" aria-label="Bar chart of symptom frequency in percent: fever 100, headache 100, body aching 70, abdominal pain 60, vomiting 40, skin rash 20.">
           <div class="barrow"><span>Fever</span><span class="track"><i class="fill" style="width:100%;background:#C94F6D"></i></span><em>100%</em></div>
           <div class="barrow"><span>Headache</span><span class="track"><i class="fill" style="width:100%;background:#C94F6D"></i></span><em>100%</em></div>
@@ -997,7 +978,7 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
         <figcaption>Percentages as reported in the paper; patients could report more than one symptom.</figcaption>
       </figure>
       <figure class="fig reveal">
-        <span class="fig-num">Figure 5</span><h3>Share of cases by month</h3>
+        <h3>Share of cases by month</h3>
         <div role="img" aria-label="Bar chart: October 53 percent, November 28 percent, December 11 percent, January 9 percent.">
           <div class="barrow"><span>October</span><span class="track"><i class="fill" style="width:100%;background:#9A7BFF"></i></span><em>53%</em></div>
           <div class="barrow"><span>November</span><span class="track"><i class="fill" style="width:52.8%;background:#9A7BFF"></i></span><em>28%</em></div>
@@ -1007,7 +988,7 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
         <figcaption>Cases fell steadily as temperatures dropped. Percentages as reported in the paper; they sum to 101% due to rounding in the original.</figcaption>
       </figure>
       <figure class="fig reveal">
-        <span class="fig-num">Table 1 · Figure 6</span><h3>Serological profile — ICT results (n = 153)</h3>
+        <h3>Serological profile — ICT results (n = 153)</h3>
         <div class="tbl-wrap"><table class="data">
           <tr><th>Patients</th><th>NS1</th><th>IgG</th><th>IgM</th><th>Share</th></tr>
           <tr><td>86</td><td>+</td><td>+</td><td>−</td><td>56.2%</td></tr>
@@ -1017,7 +998,7 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
         <figcaption>All 153 patients were NS1 positive. An ICT pattern alone cannot confirm primary versus secondary infection, and serotyping was not performed — see the integrity note.</figcaption>
       </figure>
       <figure class="fig reveal">
-        <span class="fig-num">Figure 7</span><h3>&ldquo;How is dengue transmitted?&rdquo; — patient answers</h3>
+        <h3>&ldquo;How is dengue transmitted?&rdquo; — patient answers</h3>
         <div role="img" aria-label="Bar chart: mosquito bite 68, waterborne 33, airborne 28, don't know 23.">
           <div class="barrow"><span>Mosquito bite</span><span class="track"><i class="fill" style="width:100%;background:#3ECF8E"></i></span><em>68</em></div>
           <div class="barrow"><span>Waterborne</span><span class="track"><i class="fill" style="width:48.5%;background:#3ECF8E"></i></span><em>33</em></div>
@@ -1050,7 +1031,6 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
 <section class="alt" id="hub" aria-labelledby="hub-h">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-num">08 — AI KNOWLEDGE HUB</span>
       <h2 id="hub-h">Learn AI, level by level</h2>
       <p>A structured library of short, accurate explainers — each with an introduction, a plain explanation, an example, key terms, a common misunderstanding and a limitation. Search, filter by level, and open any topic.</p>
     </div>
@@ -1072,7 +1052,6 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
 <section id="contact" aria-labelledby="contact-h">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-num">09 — CONTACT</span>
       <h2 id="contact-h">Let&rsquo;s connect</h2>
       <p>For professional enquiries, education work, technology collaboration or research conversation — email is the fastest way to reach me.</p>
     </div>
@@ -1274,12 +1253,12 @@ var TF=[
 ["Self-attention","The heart of the transformer. Every token looks at every other token and decides how much each one matters to it. In “The animal didn't cross the street because it was tired”, attention is what lets “it” draw most of its meaning from “animal”."],
 ["Attention heads","Attention runs in parallel “heads”, each specialising in a different kind of relationship — one may track grammar, another who did what to whom, another topic. Their results are combined, which is why the mechanism is called multi-head attention."],
 ["Feed-forward network","After attention, each token's numbers pass through a small feed-forward network — two layers of weighted sums and an activation function — where much of the model's stored “knowledge” is applied and the representation is refined."],
-["Transformer blocks","Steps 4–7 form one transformer block, and blocks are stacked — dozens in modern models. Each block re-reads the whole sequence with richer context than the last, building understanding layer by layer."],
+["Transformer blocks","Positional information, self-attention, attention heads and the feed-forward network together form one transformer block, and blocks are stacked — dozens in modern models. Each block re-reads the whole sequence with richer context than the last, building understanding layer by layer."],
 ["Output generation","The final block's output is converted into probabilities over the whole vocabulary: how likely each token is to come next. One token is chosen, appended to the text, and the whole process repeats — which is how a language model writes, one token at a time."]
 ];
 var tfRow=document.getElementById("tfStages"),tfCur=0;
 TF.forEach(function(s,i){
-  var b=document.createElement("button");b.type="button";b.className="chip-btn"+(i===0?" active":"");b.textContent=(i+1)+". "+s[0];
+  var b=document.createElement("button");b.type="button";b.className="chip-btn"+(i===0?" active":"");b.textContent=s[0];
   b.addEventListener("click",function(){tfCur=i;tfRow.querySelectorAll(".chip-btn").forEach(function(x,j){x.classList.toggle("active",j===i);});tfShow();});
   tfRow.appendChild(b);
 });
@@ -1306,7 +1285,7 @@ AG.forEach(function(s,i){
 });
 function agShow(){
   pipe.querySelectorAll(".step").forEach(function(x,i){x.classList.toggle("on",i===agCur);});
-  document.getElementById("agentTitle").textContent=(agCur+1)+". "+AG[agCur][0];
+  document.getElementById("agentTitle").textContent=AG[agCur][0];
   document.getElementById("agentBody").textContent=AG[agCur][1];
 }
 document.getElementById("agentNext").addEventListener("click",function(){agCur=Math.min(agCur+1,AG.length-1);agShow();});
@@ -1499,7 +1478,7 @@ kgShow("ai");
           "A second hidden layer combines the first layer's patterns into more abstract ones: shapes into objects, words into meaning. Depth — many layers — is what 'deep learning' means.",
           "An output neuron produces part of the final answer — for a classifier, one possible category, with a strength that becomes a probability. The strongest output wins, and its strength is a confidence, not a certainty."
         ];
-        document.getElementById("nnTitle").textContent=layerNames[rec.layer]+" · neuron "+(rec.index+1)+" of "+layers[rec.layer];
+        document.getElementById("nnTitle").textContent=layerNames[rec.layer]+" · selected neuron";
         document.getElementById("nnBody").textContent=roles[rec.layer];
       }
     });
@@ -1719,7 +1698,7 @@ var riskList=document.getElementById("riskList");
 RISKS.forEach(function(r,i){
   var d=document.createElement("details");d.className="risk reveal in";
   var s=document.createElement("summary");
-  s.innerHTML="<span>"+(i+1)+". "+r[0]+"</span><span class='chev' aria-hidden='true'>+</span>";
+  s.innerHTML="<span>"+r[0]+"</span><span class='chev' aria-hidden='true'>+</span>";
   var body=document.createElement("div");body.className="risk-body";
   body.innerHTML="<p><b>What it is:</b> "+r[1]+"</p><p><b>A realistic example:</b> "+r[2]+"</p><p><b>Why it matters:</b> "+r[3]+"</p><p><b>Practical mitigation:</b> "+r[4].replace(/^Mitigation: /,"")+"</p>";
   d.appendChild(s);d.appendChild(body);riskList.appendChild(d);
