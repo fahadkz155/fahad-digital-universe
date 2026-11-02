@@ -301,10 +301,16 @@ table.data td:first-child{color:var(--text);font-weight:700}
 .lvl.b{border-color:var(--good);color:var(--good)}
 .lvl.i{border-color:var(--cyan);color:var(--cyan)}
 .lvl.a{border-color:var(--violet);color:var(--violet)}
-.notes-download{margin-top:26px;background:var(--panel);border:1px solid var(--cyan);border-radius:var(--radius);padding:28px;display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.notes-download-copy{flex:1;min-width:min(100%,420px)}
+.notes-download{margin-top:26px;background:var(--panel);border:1px solid var(--cyan);border-radius:var(--radius);padding:28px}
 .notes-download-copy h3{margin:0 0 8px;font-size:1.3rem;line-height:1.25}
 .notes-download-copy p{margin:0;color:var(--muted);font-size:.97rem;max-width:68ch}
+.notes-list{margin-top:8px}
+.notes-item{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--line)}
+.notes-item:last-child{border-bottom:none;padding-bottom:2px}
+.notes-item-copy{flex:1;min-width:min(100%,380px)}
+.notes-item-copy h4{margin:0 0 4px;font-size:1.02rem;line-height:1.3}
+.notes-item-copy p{margin:0 0 7px;color:var(--muted);font-size:.92rem;max-width:68ch}
+.notes-meta{font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
 .notes-download-btn{flex:none;white-space:nowrap}
 @media(max-width:680px){.notes-download{padding:22px}.notes-download-btn{width:100%;justify-content:center}}
 
@@ -1054,9 +1060,90 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
     <div class="notes-download reveal">
       <div class="notes-download-copy">
         <h3>My Notes — Free Download</h3>
-        <p>Introduction to Artificial Intelligence — Basic AI Notes, written by Shah Fahad. A beginner-friendly introduction: what AI is, how it learns, its main branches, key words, uses, limits, and good habits. PDF · 9 pages · Free.</p>
+        <p>The AI Notes Series by Shah Fahad — free PDF study notes for teachers, students and beginners. Start with the Introduction, then take any topic in depth. Every set is unnumbered, plain-English, and checked before publishing.</p>
       </div>
-      <a class="btn btn-cyan notes-download-btn" href="https://fahadkz155.github.io/fahad-digital-universe/Introduction-to-AI-Basic-Notes-by-Shah-Fahad.pdf" download>Download the Notes (PDF)</a>
+      <div class="notes-list">
+        <div class="notes-item">
+          <div class="notes-item-copy">
+            <h4>Introduction to Artificial Intelligence — Basic AI Notes</h4>
+            <p>A beginner-friendly introduction to all the basics.</p>
+            <span class="notes-meta">PDF · 9 pages · Free</span>
+          </div>
+          <a class="btn btn-cyan notes-download-btn" href="https://fahadkz155.github.io/fahad-digital-universe/Introduction-to-AI-Basic-Notes-by-Shah-Fahad.pdf" download>Download (PDF)</a>
+        </div>
+        <div class="notes-item">
+          <div class="notes-item-copy">
+            <h4>Artificial Intelligence — The Field as a Whole</h4>
+            <p>The map of the whole field and how its branches connect.</p>
+            <span class="notes-meta">PDF · 8 pages · Free</span>
+          </div>
+          <a class="btn btn-cyan notes-download-btn" href="https://fahadkz155.github.io/fahad-digital-universe/Notes-Artificial-Intelligence-by-Shah-Fahad.pdf" download>Download (PDF)</a>
+        </div>
+        <div class="notes-item">
+          <div class="notes-item-copy">
+            <h4>AI-Assisted Data Analysis</h4>
+            <p>From raw records to honest answers, with worked statistics and charts.</p>
+            <span class="notes-meta">PDF · 10 pages · Free</span>
+          </div>
+          <a class="btn btn-cyan notes-download-btn" href="https://fahadkz155.github.io/fahad-digital-universe/Notes-AI-Assisted-Data-Analysis-by-Shah-Fahad.pdf" download>Download (PDF)</a>
+        </div>
+        <div class="notes-item">
+          <div class="notes-item-copy">
+            <h4>Python &amp; Scientific Computing</h4>
+            <p>The language of data and AI, from first ideas to the famous libraries.</p>
+            <span class="notes-meta">PDF · 9 pages · Free</span>
+          </div>
+          <a class="btn btn-cyan notes-download-btn" href="https://fahadkz155.github.io/fahad-digital-universe/Notes-Python-and-Scientific-Computing-by-Shah-Fahad.pdf" download>Download (PDF)</a>
+        </div>
+        <div class="notes-item">
+          <div class="notes-item-copy">
+            <h4>No-Code Automation &amp; Workflow Integration</h4>
+            <p>Triggers, conditions and actions — with a human approval step.</p>
+            <span class="notes-meta">PDF · 9 pages · Free</span>
+          </div>
+          <a class="btn btn-cyan notes-download-btn" href="https://fahadkz155.github.io/fahad-digital-universe/Notes-No-Code-Automation-by-Shah-Fahad.pdf" download>Download (PDF)</a>
+        </div>
+        <div class="notes-item">
+          <div class="notes-item-copy">
+            <h4>AI Governance &amp; Quality Control</h4>
+            <p>Hallucination, bias, privacy, and checking AI before trusting it.</p>
+            <span class="notes-meta">PDF · 9 pages · Free</span>
+          </div>
+          <a class="btn btn-cyan notes-download-btn" href="https://fahadkz155.github.io/fahad-digital-universe/Notes-AI-Governance-and-Quality-Control-by-Shah-Fahad.pdf" download>Download (PDF)</a>
+        </div>
+        <div class="notes-item">
+          <div class="notes-item-copy">
+            <h4>LLM Application Development</h4>
+            <p>Tokens, context windows and RAG — how LLM apps are really built.</p>
+            <span class="notes-meta">PDF · 9 pages · Free</span>
+          </div>
+          <a class="btn btn-cyan notes-download-btn" href="https://fahadkz155.github.io/fahad-digital-universe/Notes-LLM-Application-Development-by-Shah-Fahad.pdf" download>Download (PDF)</a>
+        </div>
+        <div class="notes-item">
+          <div class="notes-item-copy">
+            <h4>AI Agentic Workflows</h4>
+            <p>The agent loop, tools, memory, and why permissions matter.</p>
+            <span class="notes-meta">PDF · 9 pages · Free</span>
+          </div>
+          <a class="btn btn-cyan notes-download-btn" href="https://fahadkz155.github.io/fahad-digital-universe/Notes-AI-Agentic-Workflows-by-Shah-Fahad.pdf" download>Download (PDF)</a>
+        </div>
+        <div class="notes-item">
+          <div class="notes-item-copy">
+            <h4>Generative AI</h4>
+            <p>How AI creates text, images and video — and the responsibilities.</p>
+            <span class="notes-meta">PDF · 9 pages · Free</span>
+          </div>
+          <a class="btn btn-cyan notes-download-btn" href="https://fahadkz155.github.io/fahad-digital-universe/Notes-Generative-AI-by-Shah-Fahad.pdf" download>Download (PDF)</a>
+        </div>
+        <div class="notes-item">
+          <div class="notes-item-copy">
+            <h4>Software Engineering &amp; Technical Problem-Solving</h4>
+            <p>The method, the habits, debugging, and version control in plain words.</p>
+            <span class="notes-meta">PDF · 9 pages · Free</span>
+          </div>
+          <a class="btn btn-cyan notes-download-btn" href="https://fahadkz155.github.io/fahad-digital-universe/Notes-Software-Engineering-by-Shah-Fahad.pdf" download>Download (PDF)</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
