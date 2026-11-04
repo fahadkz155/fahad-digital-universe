@@ -343,6 +343,41 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
 .dlg-body p b{color:var(--text)}
 .icon-btn{background:var(--panel);border:1px solid var(--line-2);color:var(--text);width:38px;height:38px;border-radius:10px;cursor:pointer;display:grid;place-items:center;flex:none}
 
+/* ---------- login & AI courses ---------- */
+[hidden]{display:none!important}
+.nav-auth{display:flex;align-items:center;gap:10px;flex:none}
+.nav-login-btn{padding:10px 20px;font-size:.88rem}
+.nav-user{font-size:.82rem;font-weight:700;color:var(--muted);max-width:170px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-auth-note{margin:0;font-size:.8rem;color:var(--warn);line-height:1.35;max-width:190px}
+.nav-auth-mobile{display:none}
+@media(max-width:1180px){.nav-login-btn{padding:8px 15px;font-size:.82rem}.nav-user{max-width:120px}}
+@media(max-width:1060px){
+  .nav-auth{display:none}
+  .nav-auth-mobile{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:12px 6px 4px;border-top:1px solid var(--line);margin-top:6px}
+  .nav-auth-mobile .nav-user{max-width:100%}
+  .nav-auth-mobile .btn,.nav-auth-mobile .mini-btn{justify-content:center;text-align:center}
+  .nav-auth-mobile .nav-auth-note{max-width:100%}
+}
+#authDlg{max-width:440px}
+#authDlg[open]{animation:authIn 220ms var(--ease)}
+@keyframes authIn{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+.auth-switch{display:flex;gap:8px;margin-bottom:20px}
+.auth-switch .chip-btn{flex:1}
+form.auth{display:grid;gap:12px}
+form.auth label{font-size:.86rem;font-weight:700;display:grid;gap:6px}
+input[type="password"]{background:var(--bg-3);border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;color:var(--text);font:inherit;font-size:.97rem;width:100%}
+input[type="password"]:focus{border-color:var(--cyan);outline:none}
+.auth-ok{color:var(--good);font-size:.88rem;min-height:1.2em;margin:0}
+.auth-submit{justify-content:center}
+.auth-submit:disabled{opacity:.6;cursor:wait}
+.auth-forgot{margin:2px 0 0;text-align:center}
+.auth-link{background:none;border:none;color:var(--cyan);font:inherit;font-size:.9rem;font-weight:700;cursor:pointer;padding:4px}
+.auth-link:hover{text-decoration:underline}
+.auth-link:active{transform:scale(.97)}
+.course-card{display:flex;flex-direction:column}
+.course-card p{margin:0 0 18px}
+.course-card .course-btn{margin-top:auto;align-self:flex-start}
+
 @media(max-width:1180px){.nav-links a{padding:7px 6px;font-size:.76rem}}
 @media(max-width:1060px){
   .nav-links{display:none;position:absolute;top:100%;left:12px;right:12px;background:var(--bg-2);border:1px solid var(--line-2);border-radius:16px;padding:10px;flex-direction:column;align-items:stretch;box-shadow:var(--shadow)}
@@ -398,7 +433,19 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
       <a href="#research">Research</a>
       <a href="#hub">Knowledge Hub</a>
       <a href="#contact">Contact</a>
+      <div class="nav-auth-mobile">
+        <span class="nav-user" id="navUserM" hidden></span>
+        <button class="mini-btn" id="navSignOutM" type="button" hidden>Sign out</button>
+        <button class="btn btn-cyan" id="navLoginM" type="button">Login</button>
+        <p class="nav-auth-note" id="navAuthNoteM" hidden>Login is unavailable right now — please try again later.</p>
+      </div>
     </nav>
+    <div class="nav-auth">
+      <span class="nav-user" id="navUser" hidden></span>
+      <button class="mini-btn" id="navSignOut" type="button" hidden>Sign out</button>
+      <button class="btn btn-cyan nav-login-btn" id="navLogin" type="button">Login</button>
+      <p class="nav-auth-note" id="navAuthNote" hidden>Login is unavailable right now — please try again later.</p>
+    </div>
     <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
   </div>
 </header>
@@ -1148,6 +1195,68 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
   </div>
 </section>
 
+<!-- ============ AI COURSES ============ -->
+<section id="courses" aria-labelledby="courses-h">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 id="courses-h">AI Courses</h2>
+      <p>Learn AI step by step. Choose a course from the areas I work in — create a free account or log in to open the full course notes.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card course-card reveal">
+        <h3>Introduction to Artificial Intelligence — Basic AI Notes</h3>
+        <p>A beginner-friendly introduction to all the basics.</p>
+        <button class="btn btn-cyan course-btn" type="button" data-pdf="https://fahadkz155.github.io/fahad-digital-universe/Introduction-to-AI-Basic-Notes-by-Shah-Fahad.pdf">Login to access</button>
+      </div>
+      <div class="card course-card reveal">
+        <h3>Artificial Intelligence — The Field as a Whole</h3>
+        <p>The map of the whole field and how its branches connect.</p>
+        <button class="btn btn-cyan course-btn" type="button" data-pdf="https://fahadkz155.github.io/fahad-digital-universe/Notes-Artificial-Intelligence-by-Shah-Fahad.pdf">Login to access</button>
+      </div>
+      <div class="card course-card reveal">
+        <h3>AI-Assisted Data Analysis</h3>
+        <p>From raw records to honest answers, with worked statistics and charts.</p>
+        <button class="btn btn-cyan course-btn" type="button" data-pdf="https://fahadkz155.github.io/fahad-digital-universe/Notes-AI-Assisted-Data-Analysis-by-Shah-Fahad.pdf">Login to access</button>
+      </div>
+      <div class="card course-card reveal">
+        <h3>Python &amp; Scientific Computing</h3>
+        <p>The language of data and AI, from first ideas to the famous libraries.</p>
+        <button class="btn btn-cyan course-btn" type="button" data-pdf="https://fahadkz155.github.io/fahad-digital-universe/Notes-Python-and-Scientific-Computing-by-Shah-Fahad.pdf">Login to access</button>
+      </div>
+      <div class="card course-card reveal">
+        <h3>No-Code Automation &amp; Workflow Integration</h3>
+        <p>Triggers, conditions and actions — with a human approval step.</p>
+        <button class="btn btn-cyan course-btn" type="button" data-pdf="https://fahadkz155.github.io/fahad-digital-universe/Notes-No-Code-Automation-by-Shah-Fahad.pdf">Login to access</button>
+      </div>
+      <div class="card course-card reveal">
+        <h3>AI Governance &amp; Quality Control</h3>
+        <p>Hallucination, bias, privacy, and checking AI before trusting it.</p>
+        <button class="btn btn-cyan course-btn" type="button" data-pdf="https://fahadkz155.github.io/fahad-digital-universe/Notes-AI-Governance-and-Quality-Control-by-Shah-Fahad.pdf">Login to access</button>
+      </div>
+      <div class="card course-card reveal">
+        <h3>LLM Application Development</h3>
+        <p>Tokens, context windows and RAG — how LLM apps are really built.</p>
+        <button class="btn btn-cyan course-btn" type="button" data-pdf="https://fahadkz155.github.io/fahad-digital-universe/Notes-LLM-Application-Development-by-Shah-Fahad.pdf">Login to access</button>
+      </div>
+      <div class="card course-card reveal">
+        <h3>AI Agentic Workflows</h3>
+        <p>The agent loop, tools, memory, and why permissions matter.</p>
+        <button class="btn btn-cyan course-btn" type="button" data-pdf="https://fahadkz155.github.io/fahad-digital-universe/Notes-AI-Agentic-Workflows-by-Shah-Fahad.pdf">Login to access</button>
+      </div>
+      <div class="card course-card reveal">
+        <h3>Generative AI</h3>
+        <p>How AI creates text, images and video — and the responsibilities.</p>
+        <button class="btn btn-cyan course-btn" type="button" data-pdf="https://fahadkz155.github.io/fahad-digital-universe/Notes-Generative-AI-by-Shah-Fahad.pdf">Login to access</button>
+      </div>
+      <div class="card course-card reveal">
+        <h3>Software Engineering &amp; Technical Problem-Solving</h3>
+        <p>The method, the habits, debugging, and version control in plain words.</p>
+        <button class="btn btn-cyan course-btn" type="button" data-pdf="https://fahadkz155.github.io/fahad-digital-universe/Notes-Software-Engineering-by-Shah-Fahad.pdf">Login to access</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CONTACT ============ -->
 <section id="contact" aria-labelledby="contact-h">
   <div class="wrap">
@@ -1196,6 +1305,25 @@ dialog::backdrop{background:rgba(2,4,10,.78)}
 <dialog id="hubDlg" aria-labelledby="hubDlgTitle">
   <div class="dlg-head"><h2 id="hubDlgTitle"></h2><button class="icon-btn" id="hubDlgClose" type="button" aria-label="Close">✕</button></div>
   <div class="dlg-body" id="hubDlgBody"></div>
+</dialog>
+
+<!-- Login / create account dialog -->
+<dialog id="authDlg" aria-labelledby="authDlgTitle">
+  <div class="dlg-head"><h2 id="authDlgTitle">Sign in</h2><button class="icon-btn" id="authDlgClose" type="button" aria-label="Close">✕</button></div>
+  <div class="dlg-body">
+    <div class="auth-switch" role="group" aria-label="Sign in or create an account">
+      <button class="chip-btn active" id="authTabIn" type="button" aria-pressed="true">Sign in</button>
+      <button class="chip-btn" id="authTabUp" type="button" aria-pressed="false">Create account</button>
+    </div>
+    <form class="auth" id="authForm" novalidate>
+      <label>Email address<input type="email" id="authEmail" autocomplete="email" placeholder="you@example.com" /></label>
+      <label>Password<input type="password" id="authPassword" autocomplete="current-password" placeholder="Your password" /></label>
+      <p class="form-err" id="authErr" role="alert"></p>
+      <p class="auth-ok" id="authOk" role="status"></p>
+      <button class="btn btn-cyan auth-submit" id="authSubmit" type="submit">Sign in</button>
+      <p class="auth-forgot"><button class="auth-link" id="authForgot" type="button">Forgot password?</button></p>
+    </form>
+  </div>
 </dialog>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
@@ -1876,6 +2004,137 @@ document.getElementById("msgForm").addEventListener("submit",function(ev){
   a.href="mailto:fahadkz155@gmail.com?subject="+encodeURIComponent(s)+"&body="+encodeURIComponent(m+"\n\n— "+n+" ("+em+")");
   document.body.appendChild(a);a.click();document.body.removeChild(a);
 });
+})();
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script>
+(function(){
+"use strict";
+function $(id){return document.getElementById(id);}
+var loginBtns=[$("navLogin"),$("navLoginM")],
+    userEls=[$("navUser"),$("navUserM")],
+    outBtns=[$("navSignOut"),$("navSignOutM")],
+    noteEls=[$("navAuthNote"),$("navAuthNoteM")],
+    courseBtns=document.querySelectorAll(".course-btn"),
+    dlg=$("authDlg"),form=$("authForm"),
+    emailEl=$("authEmail"),passEl=$("authPassword"),
+    errEl=$("authErr"),okEl=$("authOk"),
+    submitBtn=$("authSubmit"),titleEl=$("authDlgTitle"),
+    tabIn=$("authTabIn"),tabUp=$("authTabUp"),
+    mode="in",auth=null,currentUser=null;
+
+function setHidden(els,hide){els.forEach(function(el){if(el)el.hidden=hide;});}
+function closeMobileMenu(){
+  var nl=$("navLinks"),mb=$("menuBtn");
+  if(nl)nl.classList.remove("open");
+  if(mb){mb.textContent="☰";mb.setAttribute("aria-expanded","false");}
+}
+function loginUnavailable(){
+  setHidden(loginBtns,true);setHidden(userEls,true);setHidden(outBtns,true);setHidden(noteEls,false);
+}
+function applyState(){
+  if(currentUser){
+    setHidden(loginBtns,true);setHidden(noteEls,true);
+    userEls.forEach(function(el){if(el){el.textContent=currentUser.email;el.title=currentUser.email;}});
+    setHidden(userEls,false);setHidden(outBtns,false);
+    courseBtns.forEach(function(b){b.textContent="Start learning";});
+  }else{
+    setHidden(userEls,true);setHidden(outBtns,true);setHidden(noteEls,true);setHidden(loginBtns,false);
+    courseBtns.forEach(function(b){b.textContent="Login to access";});
+  }
+}
+function setMode(m){
+  mode=m;
+  var up=(m==="up");
+  titleEl.textContent=up?"Create account":"Sign in";
+  submitBtn.textContent=up?"Create account":"Sign in";
+  tabIn.classList.toggle("active",!up);
+  tabUp.classList.toggle("active",up);
+  tabIn.setAttribute("aria-pressed",String(!up));
+  tabUp.setAttribute("aria-pressed",String(up));
+  passEl.setAttribute("autocomplete",up?"new-password":"current-password");
+  errEl.textContent="";okEl.textContent="";
+}
+function openAuth(m){
+  if(!auth){loginUnavailable();return;}
+  setMode(m||"in");
+  if(!dlg.open){
+    if(typeof dlg.showModal==="function")dlg.showModal();
+    else dlg.setAttribute("open","");
+  }
+  setTimeout(function(){emailEl.focus();},40);
+}
+loginBtns.forEach(function(b){if(b)b.addEventListener("click",function(){closeMobileMenu();openAuth("in");});});
+outBtns.forEach(function(b){if(b)b.addEventListener("click",function(){closeMobileMenu();if(auth)auth.signOut();});});
+courseBtns.forEach(function(b){b.addEventListener("click",function(){
+  if(currentUser)window.open(b.getAttribute("data-pdf"),"_blank","noopener");
+  else openAuth("in");
+});});
+tabIn.addEventListener("click",function(){setMode("in");});
+tabUp.addEventListener("click",function(){setMode("up");});
+$("authDlgClose").addEventListener("click",function(){dlg.close();});
+dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close();});
+
+function friendly(code){
+  switch(code){
+    case "auth/invalid-email":return "That email address does not look right — please check it and try again.";
+    case "auth/user-not-found":return "No account was found with that email address. Create a free account first, or check the address you entered.";
+    case "auth/wrong-password":return "That password is not correct. Please try again, or use Forgot password below.";
+    case "auth/invalid-credential":return "Those sign-in details were not accepted. Check your email and password, or create a free account.";
+    case "auth/email-already-in-use":return "An account with this email already exists — please sign in instead.";
+    case "auth/weak-password":return "That password is too weak — please use at least 6 characters.";
+    case "auth/too-many-requests":return "Too many attempts in a row. Please wait a little while, then try again.";
+    case "auth/network-request-failed":return "A network problem stopped that. Please check your connection and try again.";
+    case "auth/user-disabled":return "This account has been disabled. Please contact Fahad for help.";
+    default:return "Something went wrong. Please try again.";
+  }
+}
+form.addEventListener("submit",function(ev){
+  ev.preventDefault();
+  if(!auth){loginUnavailable();return;}
+  var em=emailEl.value.trim(),pw=passEl.value;
+  errEl.textContent="";okEl.textContent="";
+  if(!em||!pw){errEl.textContent="Please enter your email address and password.";return;}
+  submitBtn.disabled=true;submitBtn.textContent="Please wait…";
+  var p=(mode==="up")?auth.createUserWithEmailAndPassword(em,pw):auth.signInWithEmailAndPassword(em,pw);
+  p.then(function(){
+    submitBtn.disabled=false;setMode(mode);
+    passEl.value="";
+    if(dlg.open)dlg.close();
+  }).catch(function(e){
+    submitBtn.disabled=false;submitBtn.textContent=(mode==="up")?"Create account":"Sign in";
+    errEl.textContent=friendly(e&&e.code);
+  });
+});
+$("authForgot").addEventListener("click",function(){
+  if(!auth){loginUnavailable();return;}
+  var em=emailEl.value.trim();
+  errEl.textContent="";okEl.textContent="";
+  if(!em){errEl.textContent="Enter your email address above first, then choose Forgot password.";emailEl.focus();return;}
+  auth.sendPasswordResetEmail(em).then(function(){
+    okEl.textContent="Password reset email sent to "+em+" — open it and follow the link to choose a new password.";
+  }).catch(function(e){errEl.textContent=friendly(e&&e.code);});
+});
+
+/* ---------- Firebase (default LOCAL persistence: sign-in survives reloads) ---------- */
+var firebaseConfig = {
+  apiKey: "AIzaSyBaCYxreqAux4x4wux5vHsLDbWHcdGI6pQ",
+  authDomain: "fahad-portfolio-login.firebaseapp.com",
+  projectId: "fahad-portfolio-login",
+  storageBucket: "fahad-portfolio-login.firebasestorage.app",
+  messagingSenderId: "327191992083",
+  appId: "1:327191992083:web:0431c86829f60d1467ace6"
+};
+try{
+  if(!window.firebase||typeof firebase.initializeApp!=="function"||typeof firebase.auth!=="function")throw new Error("Firebase unavailable");
+  firebase.initializeApp(firebaseConfig);
+  auth=firebase.auth();
+  auth.onAuthStateChanged(function(user){currentUser=user;applyState();});
+}catch(e){
+  auth=null;
+  loginUnavailable();
+}
 })();
 </script>
 <script data-goatcounter="https://shahfahad.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
